@@ -28,6 +28,7 @@ class UpdateCategoryRequest extends FormRequest
             ],
             'content'=> ['nullable'],
             'category_id' =>['nullable', 'exists:categories,id'],
+            'tags' => ['exists:tags, id'],
         ];
     }
 }

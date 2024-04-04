@@ -51,6 +51,11 @@ class ProjectController extends Controller
 
         $newProject = Project::create($validatedData);
 
+
+        if($request->has('tags')){
+            $newProject->tags()->attach($request->tags);
+        }
+
         return redirect()->route('dashboard.posts.index');
     }
 

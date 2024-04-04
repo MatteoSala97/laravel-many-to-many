@@ -25,6 +25,7 @@ class StoreCategoryRequest extends FormRequest
             'title' => ['required', 'unique:projects', 'max:150'],
             'content' => ['nullable'],
             'category_id' =>['nullable', 'exists:categories,id'],
+            'tags' => ['exists:tags, id'],
         ];
     }
 }
