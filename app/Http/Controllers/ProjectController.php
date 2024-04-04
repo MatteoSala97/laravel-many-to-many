@@ -110,6 +110,9 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
 
+        $project->tags()->sync([]);
+
+
         $project->delete();
 
         return redirect()->route('dashboard.posts.index')->with('success', 'Project successfully deleted');
