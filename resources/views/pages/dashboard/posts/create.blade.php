@@ -44,6 +44,25 @@
             </select>
         </div>
 
+        {{-- Multiple selection "tags"--}}
+
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+
+
+            <select
+                multiple
+                class="form-select form-select-lg"
+                name="tags[]"
+                id="tags"
+            >
+                @forelse ($tags as $item )
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                    @empty
+                    <option value="">There are no tags</option>
+                @endforelse
+            </select>
+        </div>
 
 
         <div class="mb-3">

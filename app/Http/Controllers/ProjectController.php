@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\Tag;
 
 class ProjectController extends Controller
 {
@@ -25,7 +26,9 @@ class ProjectController extends Controller
     {
         $categories = Category::all();
 
-        return view('pages.dashboard.posts.create', compact('categories'));
+        $tags = Tag::all();
+
+        return view('pages.dashboard.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -45,7 +48,7 @@ class ProjectController extends Controller
         $validatedData['slug'] = $slug;
 
         $validatedData['category_id'] = $request->category_id;
-        
+
         $newProject = Project::create($validatedData);
 
         return redirect()->route('dashboard.posts.index');
@@ -67,7 +70,9 @@ class ProjectController extends Controller
         // $project = Project::findOrFail($id);
         $categories = Category::all();
 
-        return view('pages.dashboard.posts.edit', compact('project', 'categories'));
+        $tags = Tag::all();
+
+        return view('pages.dashboard.posts.edit', compact('project', 'categories', 'tags'));
     }
 
     /**

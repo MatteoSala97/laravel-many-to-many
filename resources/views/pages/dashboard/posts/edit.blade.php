@@ -46,6 +46,45 @@
             </select>
         </div>
 
+        {{-- Multiple selection "tags"--}}
+
+        <div class="mb-3">
+            <label for="tags" class="form-label">Tags</label>
+
+
+            <select
+                multiple
+                class="form-select form-select-lg"
+                name="tags[]"
+                id="tags"
+            >
+                @forelse ($tags as $item )
+                    {{-- validation control --}}
+
+                    @if($errors->any())
+                        <option value="{{ $item->id }}"
+                            {{ in_array($item->id, old('tags', [])) ? 'selected' : '' }}
+                            >
+                            {{ item->name }}
+                        </option>
+
+                        @else
+                        <option value="{{ $item->id }}"
+                            {{ $project->tags->contains($item->id) ? 'selected' : ''}}
+                            >
+                            {{ $item->name }}</option>
+                    @endif
+                    @empty
+
+                    <option value="">There are no tags</option>
+
+                @endforelse
+            </select>
+        </div>
+
+
+
+
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea class="form-control @error('title') is-invalid @enderror"" name="content" id="content" rows="3">{{ old('content') ?? $project->content }}</textarea>
