@@ -96,6 +96,10 @@ class ProjectController extends Controller
 
         $project->update($validatedData);
 
+        if( $request->has('tags') ){
+            $project->tags()->sync( $request->tags );
+        }
+
         return redirect()->route('dashboard.posts.index')->with('success', 'Project successfully updated');
     }
 
