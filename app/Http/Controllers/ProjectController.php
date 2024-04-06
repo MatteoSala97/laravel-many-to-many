@@ -6,6 +6,8 @@ use App\Models\Project;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProjectController extends Controller
 {
@@ -40,17 +42,24 @@ class ProjectController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'category_id' =>'required|exists:categories,id',
-
+            // 'cover_image' => '',
         ]);
 
         $slug = Project::generateSlug($validatedData['title']);
 
         $validatedData['slug'] = $slug;
 
+        // file managing
+        if($request->hasFile('cover_image')){
+            $path = Storage::disk('public')->put('project_images', $request->cover_image);
+
+            $validatedData['cover_image'] = $path;
+        }
+
+
         $validatedData['category_id'] = $request->category_id;
 
         $newProject = Project::create($validatedData);
-
 
         if($request->has('tags')){
             $newProject->tags()->attach($request->tags);

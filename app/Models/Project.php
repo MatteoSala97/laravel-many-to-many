@@ -18,8 +18,8 @@ class Project extends Model
         'title',
         'content',
         'slug',
-        'category_id'
-        // 'language'
+        'category_id',
+        'cover_image'
     ];
 
     public static function generateSlug($title){

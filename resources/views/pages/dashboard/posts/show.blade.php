@@ -8,14 +8,15 @@
     <h1 class="pt-4">
         Benvenuto in questo progetto
     </h1>
-    <div class="card-body border p-4 mt-3 d-flex">
-        <img class="card-img-top" style="max-width: 400px" src="{{ asset('images/WIP.jpg') }}" alt="{{ $project->title }}"/>
+    <div class="card-body border p-4 mt-3 d-flex gap-4">
+        <img class="card-img-top" style="max-width: 400px" src="{{ asset('/storage/'. $project->cover_image) }}" alt="{{ $project->title }}"/>
         <div class="d-flex flex-column justify-content-center" style="overflow: hidden; width: 600px;">
             <h4 class="card-title">Title: {{ $project->title }}</h4>
             <p class="card-text">ID: {{ $project->id }}</p>
             <p class="card-text" style="word-wrap: break-word;">Content: {{ $project->content }}</p>
             <p class="card-text">Slug: {{ $project->slug }}</p>
             <p class="card-text">Category: {{ $project->category->name }}</p>
+            <p class="card-text">Image path: {{ $project->cover_image }}</p>
             <p class="card-text">Tags:</p>
             <ul>
                 @forelse ($project->tags as $tag)

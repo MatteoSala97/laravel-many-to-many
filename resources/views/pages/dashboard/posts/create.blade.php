@@ -6,8 +6,9 @@
 <main class="container">
     <h1 class="text-center py-3">Create a new project</h1>
 
-    <form action="{{ route('dashboard.posts.store') }}" method="POST">
+    <form action="{{ route('dashboard.posts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -24,6 +25,19 @@
                 {{ $message }}
             </div>
         @enderror
+
+
+        {{-- Image upload --}}
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">Choose file</label>
+            <input
+                type="file"
+                class="form-control @error('cover_image') is-invalid @enderror"
+                name="cover_image"
+                id="cover_image"
+            />
+        </div>
+
 
         {{-- Multiple selection "categories"--}}
         <div class="mb-3">

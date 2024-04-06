@@ -13,7 +13,12 @@
             <div class="col-4 p-2">
                 <div class="card d-flex flex-column">
                     <a href="{{ route('dashboard.posts.show', $item->id) }}">
-                        <img class="card-img-top" src="{{ asset('images/WIP.jpg') }}" alt="{{ $item->title }}"/></a>
+                        <img class="card-img-top" src="{{ $item->cover_image ? asset('storage/' . $item->cover_image) : asset('images/WIP.jpg') }}" alt="{{ $item->title }}"/></a>
+
+
+
+
+
                     <div class="card-body overflow-hidden">
                         <h4 class="card-title">Title: {{ $item->title }}</h4>
                         <p class="card-text">ID: {{ $item->id }}</p>
